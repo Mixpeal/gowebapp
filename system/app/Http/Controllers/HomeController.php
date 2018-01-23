@@ -24,6 +24,29 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+        if (Session::has('oauth_request_token')){
+
+            $credentials = Twitter::getCredentials();
+
+            if (is_object($credentials) && !isset($credentials->error))
+            {
+                $feeds = Twitter::getUserTimeline(['count' => 20, 'format' => 'json']);
+                $tweets = json_decode($feeds, true);
+                return view('home',$tweets);
+            }
+            else
+            {
+                return redirect("/feeds");
+            }
+        }
+        else
+        {
+            return redirect("/feeds");
+        }
+    }
+    public function web()
+    {
         
         return view('home');
     }
