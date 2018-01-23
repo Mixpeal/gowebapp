@@ -11,3 +11,4 @@ http://durabyte.org/goapp
 
 1. the database is inside this archive, you can import it
 2. configure the twitter API and database information in the .env file located in the root folder
+3. modify the twitter api key here too: root/system/config/services.php
