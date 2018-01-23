@@ -27,25 +27,8 @@
 </head>
 <body>
     <?php
-        if (Session::has('oauth_request_token')){
-
-            $credentials = Twitter::getCredentials();
-
-            if (is_object($credentials) && !isset($credentials->error))
-            {
-                $feeds = Twitter::getUserTimeline(['count' => 20, 'format' => 'json']);
-                $tweets = json_decode($feeds, true);
-            }
-            else
-            {
-                return redirect("/feeds");
-            }
-        }
-        else
-        {
-            return redirect("/feeds");
-        }
-
+      $feeds = Twitter::getUserTimeline(['count' => 20, 'format' => 'json']);
+      $tweets = json_decode($feeds, true);
     ?>
     <nav class="navbar navbar-default navbar-static-top m-b-0">
         <div class="navbar-header">
